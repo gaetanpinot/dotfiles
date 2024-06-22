@@ -117,3 +117,5 @@ if ! shopt -oq posix; then
 fi
 PS1='\u\w\[\e[92;1;3m\]>\[\e[0m\]'
 PATH=/home/user/depot_tools:/usr/local/texlive/2023/bin/x86_64-linux:$PATH:/home/user/Documents/phpServ
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

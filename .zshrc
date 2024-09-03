@@ -20,7 +20,7 @@ zinit light zsh-users/zsh-completions
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 #binding emacs
-bindkey -e
+bindkey -v
 
 #history
 HISTSIZE=10000
@@ -38,6 +38,7 @@ alias ll='ls --color -la'
 alias gss='git status'
 alias neofetch='fastfetch -c neofetch'
 alias shutdown='shutdown now'
+alias tree='tree -C'
 
 
 #homebrew
@@ -45,3 +46,5 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+PATH=$PATH:/usr/sbin

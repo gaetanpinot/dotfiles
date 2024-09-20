@@ -39,6 +39,7 @@ alias gss='git status'
 alias neofetch='fastfetch -c neofetch'
 alias shutdown='shutdown now'
 alias tree='tree -C'
+alias docker='sudo docker'
 
 
 #homebrew

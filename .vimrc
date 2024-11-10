@@ -7,6 +7,7 @@ Plug 'sainnhe/everforest'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'dpelle/vim-Grammalecte'
 Plug 'christoomey/vim-system-copy'
+Plug 'tpope/vim-commentary'
 if has('termguicolors')
 	set termguicolors
 endif
@@ -25,7 +26,7 @@ catch /^Vim\%((\a\+)\)\=:E185/
 	colo evening
 endtry
 
-set relativenumber
+set relativenumber nu
 set encoding=utf-8
 
 set spelllang=fr

@@ -36,10 +36,14 @@ alias ls='ls --color'
 alias l='ls --color'
 alias ll='ls --color -la'
 alias gss='git status'
+alias gcm='git commit -m'
+alias ga='git add'
+alias gaa='git add * ; gss'
 alias neofetch='fastfetch -c neofetch'
 alias shutdown='shutdown now'
 alias tree='tree -C'
 alias docker='sudo docker'
+
 
 
 #homebrew
@@ -49,3 +53,10 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 PATH=$PATH:/usr/sbin
+export PATH=$HOME/.local/bin:$PATH
+
+if [ -e /home/gaetan/.nix-profile/etc/profile.d/nix.sh ]; then . /home/gaetan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# **** LISAAC COMPILER ****
+export PATH=$PATH:/home/gaetan/Downloads/lisaac/bin
+

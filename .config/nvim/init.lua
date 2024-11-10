@@ -228,6 +228,7 @@ require("lazy").setup({
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	"christoomey/vim-system-copy",
+	"glacambre/firenvim",
 	-- NOTE: Plugins can also be added by using a table,
 	-- with the first argument being the link and the following
 	-- keys can be used to configure plugin behavior/loading/etc.
@@ -497,7 +498,11 @@ require("lazy").setup({
 
 					-- Rename the variable under your cursor.
 					--  Most Language Servers support renaming across files, etc.
-					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+					local renameSave = function()
+						vim.lsp.buf.rename()
+						vim.cmd("silent! wa")
+					end
+					map("<leader>rn", renameSave, "[R]e[n]ame")
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
@@ -576,10 +581,13 @@ require("lazy").setup({
 				-- pyright = {},
 				phpactor = {},
 				zls = {},
-				html = {},
+				ltex = {},
+				-- html = {},
 				css_variables = {},
 				cssls = {},
 				cssmodules_ls = {},
+				bashls = {},
+				eslint = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--

@@ -18,9 +18,11 @@ zinit light zsh-users/zsh-syntax-highlighting
 #completion
 zinit light zsh-users/zsh-completions
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
 
-#binding emacs
-bindkey -v
+#binding vi
+# bindkey -v
 
 #history
 HISTSIZE=10000
@@ -44,10 +46,8 @@ alias shutdown='shutdown now'
 alias tree='tree -C'
 alias docker='sudo docker'
 
+export PAGER='nvim +Man!'
 
-
-#homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -58,5 +58,5 @@ export PATH=$HOME/.local/bin:$PATH
 if [ -e /home/gaetan/.nix-profile/etc/profile.d/nix.sh ]; then . /home/gaetan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # **** LISAAC COMPILER ****
-export PATH=$PATH:/home/gaetan/Downloads/lisaac/bin
+export PATH=$PATH:/home/gaetan/Downloads/lisaac/bin:/home/gaetan/.local/share/gem/ruby/3.3.0/bin
 

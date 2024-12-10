@@ -58,5 +58,5 @@ export PATH=$HOME/.local/bin:$PATH
 if [ -e /home/gaetan/.nix-profile/etc/profile.d/nix.sh ]; then . /home/gaetan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # **** LISAAC COMPILER ****
-export PATH=$PATH:/home/gaetan/Downloads/lisaac/bin:/home/gaetan/.local/share/gem/ruby/3.3.0/bin
+export PATH=$PATH:/home/gaetan/Downloads/lisaac/bin:/home/gaetan/.local/share/gem/ruby/3.3.0/bin:/home/gaetan/.config/emacs/bin:~/.config/composer/vendor/bin
 

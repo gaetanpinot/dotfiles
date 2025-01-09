@@ -116,7 +116,8 @@ if ! shopt -oq posix; then
 		. /etc/bash_completion
 	fi
 fi
-PS1='\u\w\[\e[92;1;3m\]>\[\e[0m\]'
+# PS1='\u\w\[\e[92;1;3m\]>\[\e[0m\]'
+PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\t\n\w\[\e[38;5;33m\](\[\e[0m\]${PS1_CMD1}\[\e[38;5;33m\])\[\e[92;1m\]>\[\e[0m\]'
 PATH=/home/user/depot_tools:/usr/local/texlive/2023/bin/x86_64-linux:$PATH:/home/user/Documents/phpServ
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

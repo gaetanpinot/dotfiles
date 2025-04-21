@@ -3,13 +3,8 @@ map <Leader>sf <action>(com.mituuz.fuzzier.Fuzzier)
 set relativenumber
 set number
 set scrolloff=10
+set clipboard+=unnamed
 
-
-call plug#begin('~/.vim/plugged')
-syntax on
-Plug 'christoomey/vim-system-copy'
-Plug 'tpope/vim-commentary'
-call plug#end()
 
 
 

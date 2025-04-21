@@ -10,11 +10,11 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
+autoload -Uz compinit && compinit
 #Prompt
 #zinit ice depth=1;zinit light romkatv/powerlevel10k
 # color highligt
 zinit light zsh-users/zsh-syntax-highlighting
-
 #completion
 zinit light zsh-users/zsh-completions
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -23,7 +23,6 @@ zinit light jeffreytse/zsh-vi-mode
 
 #binding vi
 #bindkey -v
-
 #history
 HISTSIZE=10000
 HISTFILE=~/.zsh_history
@@ -50,11 +49,13 @@ alias shutdown='shutdown now'
 alias tree='tree -C'
 # alias docker='sudo docker'
 alias bat='bat --pager less'
-alias dc='docker-compose'
+alias dc='docker compose'
 alias d='docker'
 alias de='docker exec'
+alias dce= 'docker compose exec'
 
 export PAGER='nvim +Man!'
+alias pager="$(echo $PAGER)"
 export EDITOR='nvim'
 
 
@@ -71,10 +72,24 @@ export PATH=$HOME/.local/bin:$PATH
 
 # eval "$(fzf --zsh)"
 # eval "$(zoxide init zsh)"
-eval "$(ssh-agent -s)"
+# eval "$(ssh-agent -s)"
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 # SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
+
 eval "$(starship init zsh)"
+
+# # pnpm
+# export PNPM_HOME="/home/gaetan/.local/share/pnpm"
+# case ":$PATH:" in
+#   *":$PNPM_HOME:"*) ;;
+#   *) export PATH="$PNPM_HOME:$PATH" ;;
+# esac
+# pnpm end
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

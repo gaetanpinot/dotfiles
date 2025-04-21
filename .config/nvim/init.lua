@@ -87,6 +87,23 @@ P.S. You can delete this when you're done too. It's your config now! :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+
+function Tabline()
+	local tabline = ""
+	for i = 1, vim.fn.tabpagenr("$") do
+		local bufnr = vim.fn.tabpagebuflist(i)[vim.fn.tabpagewinnr(i)]
+		local bufname = vim.fn.fnamemodify(vim.fn.bufname(bufnr), ":t")
+		if i == vim.fn.tabpagenr() then
+			tabline = tabline .. "%#TabLineSel#" -- Highlight current tab
+		else
+			tabline = tabline .. "%#TabLine#" -- Default highlight
+		end
+		tabline = tabline .. "%" .. i .. "T " .. i .. ": " .. bufname .. " %*"
+	end
+	return tabline
+end
+
+vim.o.tabline = "%!v:lua.Tabline()"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -163,6 +180,8 @@ vim.opt.scrolloff = 10
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+vim.keymap.set("n", "<F1>", "<nop>")
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
@@ -631,8 +650,10 @@ require("lazy").setup({
 			local servers = {
 				clangd = {},
 				gopls = {},
+				sqlls = {},
 				pyright = {},
-				ltex = {},
+				-- ltex = {},
+				angularls = {},
 				phpactor = {
 					-- settings = {
 					-- 	language_server_php_cs_fixer = { enabled = true },
@@ -900,6 +921,7 @@ require("lazy").setup({
 		--
 		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
 		"ficcdaf/ashen.nvim",
+		"blazkowolf/gruber-darker.nvim",
 		"folke/tokyonight.nvim",
 		priority = 1000, -- Make sure to load this before all the other start plugins.
 		init = function()
@@ -1034,13 +1056,12 @@ require("lazy").setup({
 	-- 	config = true,
 	-- },
 	--
-	--
+
 	{
 		"github/copilot.vim",
 		config = function()
 			-- Ensure you have the copilot plugin setup correctly before this configuration
 			vim.g.copilot_no_tab_map = true -- Disable default <Tab> mapping
-
 			-- Remap <C-y> (Ctrl-Y) for Copilot accept
 			vim.api.nvim_set_keymap(
 				"i",
@@ -1050,18 +1071,32 @@ require("lazy").setup({
 			)
 		end,
 	},
-
+	{
+		"stevearc/oil.nvim",
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {},
+		-- Optional dependencies
+		dependencies = { { "echasnovski/mini.icons", opts = {} } },
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+		lazy = false,
+		preview_split = "auto",
+		keys = {
+			{ "<leader>b", "<cmd>Oil<cr>", desc = "open oil" },
+		},
+	},
 	{
 		"mikavilpas/yazi.nvim",
 		event = "VeryLazy",
 		keys = {
 			-- 👇 in this section, choose your own keymappings!
 
-			{
-				"<leader>b",
-				"<cmd>Yazi<cr>",
-				desc = "Open yazi at the current file",
-			},
+			-- {
+			-- 	"<leader>b",
+			-- 	"<cmd>Yazi<cr>",
+			-- 	desc = "Open yazi at the current file",
+			-- },
 			{
 				-- Open in the current working directory
 				"<leader>cw",
@@ -1081,7 +1116,7 @@ require("lazy").setup({
 			-- if you want to open yazi instead of netrw, see below for more info
 			open_for_directories = false,
 			keymaps = {
-				show_help = "<f1>",
+				-- show_help = "<f1>",
 			},
 		},
 	},
@@ -1109,4 +1144,4 @@ require("lazy").setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-vim.cmd.colorscheme("ashen")
+vim.cmd.colorscheme("gruber-darker")

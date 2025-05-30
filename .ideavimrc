@@ -1,10 +1,9 @@
 let mapleader = " "
-map <Leader>sf <action>(com.mituuz.fuzzier.Fuzzier)
+map <Leader>sf <action>(GotoFile)
 set relativenumber
 set number
 set scrolloff=10
 set clipboard+=unnamed
-
-
-
-
+Plug 'tpope/vim-commentary'
+set mini-ai
+set commentary

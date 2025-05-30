@@ -10,16 +10,20 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-autoload -Uz compinit && compinit
 #Prompt
 #zinit ice depth=1;zinit light romkatv/powerlevel10k
 # color highligt
 zinit light zsh-users/zsh-syntax-highlighting
-#completion
+
+# COMPLETION
+autoload -Uz compinit && compinit
 zinit light zsh-users/zsh-completions
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
+# Makefile completion
+zstyle ':completion:*:make:*:targets' call-command true
+zstyle ':completion:*:*:make:*' tag-order 'targets'
 
 #binding vi
 #bindkey -v
@@ -63,7 +67,7 @@ export EDITOR='nvim'
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 PATH=$PATH:/usr/sbin
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH:$HOME/mybin/
 
 # if [ -e /home/gaetan/.nix-profile/etc/profile.d/nix.sh ]; then . /home/gaetan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 

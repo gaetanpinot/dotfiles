@@ -19,7 +19,7 @@ set background=dark
 	
 call plug#end()
 
-colo slate
+colo retrobox
 
 set relativenumber nu
 set encoding=utf-8

@@ -245,10 +245,11 @@ vim.opt.rtp:prepend(lazypath)
 --  To update plugins you can run
 --    :Lazy update
 --
+vim.opt.shiftwidth = 4
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	-- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 
 	-- NOTE: Plugins can also be added by using a table,
 	-- with the first argument being the link and the following
@@ -475,8 +476,8 @@ require("lazy").setup({
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
-			{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-			"williamboman/mason-lspconfig.nvim",
+			{ "mason-org/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
@@ -650,9 +651,14 @@ require("lazy").setup({
 			local servers = {
 				clangd = {},
 				gopls = {},
-				sqlls = {},
+				clangd = {},
+				-- sqlls = {},
 				pyright = {},
-				-- ltex = {},
+				gradle_ls = {},
+				-- kotlin_language_server = {},
+				-- ltex = {
+				-- 	settings = { ltex = { enabled = false } },
+				-- },
 				angularls = {},
 				phpactor = {
 					-- settings = {
@@ -667,7 +673,9 @@ require("lazy").setup({
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				volar = {},
+				vue_ls = {},
+				java_language_server = {},
+				tinymist = {},
 				-- TypeScript
 				ts_ls = {
 					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
@@ -903,8 +911,8 @@ require("lazy").setup({
 			keymap = {
 
 				["<C-y>"] = { "select_and_accept" },
-				["<Tab>"] = { "select_next", "fallback" },
-				["<S-Tab>"] = { "select_prev", "fallback" },
+				["<Tab>"] = { "select_and_accept" },
+				-- ["<S-Tab>"] = { "select_prev", "fallback" },
 			},
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
@@ -1057,25 +1065,36 @@ require("lazy").setup({
 	-- },
 	--
 
-	{
-		"github/copilot.vim",
-		config = function()
-			-- Ensure you have the copilot plugin setup correctly before this configuration
-			vim.g.copilot_no_tab_map = true -- Disable default <Tab> mapping
-			-- Remap <C-y> (Ctrl-Y) for Copilot accept
-			vim.api.nvim_set_keymap(
-				"i",
-				"<C-c>",
-				'copilot#Accept("<CR>")',
-				{ silent = true, expr = true, noremap = true }
-			)
-		end,
-	},
+	-- {
+	-- 	"github/copilot.vim",
+	-- 	config = function()
+	-- 		-- Ensure you have the copilot plugin setup correctly before this configuration
+	-- 		vim.g.copilot_no_tab_map = true -- Disable default <Tab> mapping
+	-- 		-- Remap <C-y> (Ctrl-Y) for Copilot accept
+	-- 		vim.api.nvim_set_keymap(
+	-- 			"i",
+	-- 			"<C-c>",
+	-- 			'copilot#Accept("<CR>")',
+	-- 			{ silent = true, expr = true, noremap = true }
+	-- 		)
+	-- 	end,
+	-- },
 	{
 		"stevearc/oil.nvim",
 		---@module 'oil'
 		---@type oil.SetupOpts
-		opts = {},
+		opts = {
+			delete_to_trash = true,
+			columns = {
+				"icon",
+				"permissions",
+				"size",
+				"mtime",
+			},
+			view_options = {
+				show_hidden = true,
+			},
+		},
 		-- Optional dependencies
 		dependencies = { { "echasnovski/mini.icons", opts = {} } },
 		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
@@ -1086,6 +1105,8 @@ require("lazy").setup({
 			{ "<leader>b", "<cmd>Oil<cr>", desc = "open oil" },
 		},
 	},
+	{ "kaarmu/typst.vim" },
+	-- { "jessekelighine/vim-bunttex" },
 	{
 		"mikavilpas/yazi.nvim",
 		event = "VeryLazy",

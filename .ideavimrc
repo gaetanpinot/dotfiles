@@ -1,5 +1,6 @@
 let mapleader = " "
 map <Leader>sf <action>(GotoFile)
+nnoremap L i<Enter>
 set relativenumber
 set number
 set scrolloff=10

@@ -103,6 +103,7 @@ function Tabline()
 	return tabline
 end
 
+vim.o.mouse = ""
 vim.o.tabline = "%!v:lua.Tabline()"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -182,6 +183,7 @@ vim.opt.scrolloff = 10
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 vim.keymap.set("n", "<F1>", "<nop>")
+vim.keymap.set("n", "L", "i<Enter>")
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
@@ -651,6 +653,7 @@ require("lazy").setup({
 			local servers = {
 				clangd = {},
 				gopls = {},
+				svelte = {},
 				clangd = {},
 				-- sqlls = {},
 				pyright = {},

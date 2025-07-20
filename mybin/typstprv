@@ -1,0 +1,29 @@
+#!/bin/sh
+
+bye(){
+    pkill "typst"
+    pkill "zathura"
+    echo "Bye."
+    exit 0
+}
+
+fname=$1
+if [ -z "$fname" ]; then
+  echo "Pas de fichier .typ à compiler"
+  exit 1
+fi
+# echo "$fname"
+pdfname=$(echo $fname | grep '\.typ$' |sed 's/typ$/pdf/')
+if [ -z "$pdfname" ]; then
+  echo "'$fname' n'est pas un fichier .typ"
+  exit 1
+fi
+# echo "pdfname: $pdfname"
+typst compile "$fname"
+typst watch "$fname" &
+zathura "$pdfname" &
+trap "bye" SIGINT
+while true
+do sleep 5
+done
+

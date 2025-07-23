@@ -9,6 +9,7 @@ Scope {
         model: Quickshell.screens
 
         PanelWindow {
+            id: bar
             property var modelData
             screen: modelData
 
@@ -27,7 +28,14 @@ Scope {
             }
 
             Sleep {
-                anchors.right: true
+                id: sleepbtn
+                anchors.right: parent.right
+            }
+
+            Luminosity {
+                anchors.right: sleepbtn.left
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.rightMargin: 5
             }
 
             //discord

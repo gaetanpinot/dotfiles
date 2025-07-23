@@ -61,6 +61,7 @@ alias dce= 'docker compose exec'
 export PAGER='nvim +Man!'
 alias pager="$(echo $PAGER)"
 export EDITOR='nvim'
+export BROWSER='firefox'
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

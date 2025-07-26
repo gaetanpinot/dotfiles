@@ -10,6 +10,7 @@ WrapperItem {
 
     function sleepFn() {
         sleepProcess.running = true;
+        popupSleep.visible = false;
     }
 
     function togglePopup() {

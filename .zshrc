@@ -48,6 +48,8 @@ alias gss='git status'
 alias gcm='git commit -m'
 alias ga='git add'
 alias gaa='git add * ; gss'
+alias gsl='git log --format=format:%h\ :\ %cd\ :\ %s --date=short'
+
 alias neofetch='fastfetch -c neofetch'
 alias shutdown='shutdown now'
 alias tree='tree -C'

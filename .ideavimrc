@@ -1,5 +1,6 @@
 let mapleader = " "
 map <Leader>sf <action>(GotoFile)
+map <Leader>q <action>(GotoNextError)
 nnoremap L i<Enter>
 set relativenumber
 set number

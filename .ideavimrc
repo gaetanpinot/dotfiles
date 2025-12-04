@@ -1,11 +1,17 @@
 let mapleader = " "
 map <Leader>sf <action>(GotoFile)
 map <Leader>q <action>(GotoNextError)
+"map gl <action>(PreviousTab)
+map gr <action>(FindUsages)
 nnoremap L i<Enter>
 set relativenumber
 set number
-set scrolloff=10
-set clipboard+=unnamed
+set scrolloff=5
+set clipboard+=unnamedplus
 Plug 'tpope/vim-commentary'
 set mini-ai
 set commentary
+set ignorecase
+set smartcase
+set ideaput
+set ideajoin

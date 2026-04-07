@@ -1,25 +1,25 @@
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-call plug#begin('~/.vim/plugged')
-syntax on
-" Plug 'sainnhe/everforest'
-Plug 'prabirshrestha/vim-lsp'
-" Plug 'dpelle/vim-Grammalecte'
-Plug 'christoomey/vim-system-copy'
-Plug 'tpope/vim-commentary'
-if has('termguicolors')
-	set termguicolors
-endif
+" call plug#begin('~/.vim/plugged')
+" syntax on
+" " Plug 'sainnhe/everforest'
+" Plug 'prabirshrestha/vim-lsp'
+" " Plug 'dpelle/vim-Grammalecte'
+" Plug 'christoomey/vim-system-copy'
+" Plug 'tpope/vim-commentary'
+" if has('termguicolors')
+" 	set termguicolors
+" endif
 
-set background=dark
-" let g:everforest_background = 'soft'
+" set background=dark
+" " let g:everforest_background = 'soft'
 
-" let g:everforest_better_performance = 1
+" " let g:everforest_better_performance = 1
 
 	
-call plug#end()
+" call plug#end()
 
-colo retrobox
+colo slate
 
 set relativenumber nu
 set encoding=utf-8

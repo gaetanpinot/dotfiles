@@ -1058,4 +1058,23 @@ require("lazy").setup({
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 vim.cmd.colorscheme("gruber-darker")
-vim.lsp.enable("sourcekit")
+-- vim.lsp.enable("sourcekit")
+
+local function smart_gf()
+	local target = vim.fn.expand("<cfile>")
+
+	if vim.fn.filereadable(target) == 1 then
+		local winid = vim.fn.win_getid()
+
+		local pos = vim.fn.getpos(".") -- { vim.fn.bufnr(target), 10, 1, 0 }
+		local newTag = { { tagname = "", from = pos } }
+		vim.fn.settagstack(winid, { items = newTag }, "a")
+		vim.cmd("edit " .. vim.fn.fnameescape(target))
+	else
+		-- Optional: Notify if the file doesn't exist
+		print("File not found: " .. target)
+	end
+end
+
+-- 4. Bind it to 'gf'
+vim.keymap.set("n", "gf", smart_gf, { desc = "Smart go to file" })

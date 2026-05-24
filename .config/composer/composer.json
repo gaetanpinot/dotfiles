@@ -1,5 +1,9 @@
 {
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.65"
+    },
+    "require": {
+        "phpstan/phpstan": "^2.1",
+        "felixfbecker/language-server": "^2.3"
     }
 }

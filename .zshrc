@@ -57,8 +57,7 @@ PATH=$PATH:/usr/sbin
 export PATH=$HOME/.local/bin:$PATH:$HOME/mybin/
 
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
-
-PS1="%d\>"
+PS1="%B%{$(tput setaf 162)%}%d%{$(tput sgr0)%}%B\>%b"
 set -o vi
 
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share/applications/
